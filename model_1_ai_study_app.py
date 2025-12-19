@@ -27,7 +27,7 @@ if st.button("Generate Prediction"):
     difficulty_level = ((student_subject_difficulty + student_task_difficulty)/2)
     
     break_level = ((difficulty_level/10) + 0.35)/2
-    focus_level = (difficulty_level + 10)/2
+    focus_level = (difficulty_level + 10)/2 - 1.5
     break_time = (predicted_time * (break_level/10))
     
     predicted_total_time = (predicted_time + break_time) * 0.75
@@ -38,11 +38,11 @@ if st.button("Generate Prediction"):
 
     # FIX: These lines below were indented too much in your previous version
     st.divider()
-    st.header("📊 Task Estimation Details")
+    st.header("Task Estimation Details")
     
     c1, c2, c3 = st.columns(3)
     c1.metric("Subject", subject_completed.title())
-    c2.metric("Difficulty", f"{difficulty_level:.1f}/10")
+    c2.metric("Difficulty Level", f"{difficulty_level:.1f}/10")
     c3.metric("Focus Level", f"{focus_level:.1f}")
 
     st.subheader(f"Predicted Total Time: {predicted_total_time:.2f} {time_unit}")
