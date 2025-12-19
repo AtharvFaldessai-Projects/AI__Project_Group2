@@ -43,10 +43,8 @@ urgency = min((work_left / max(dead_hrs, 0.1)) * 100, 100)
 priority = (urgency + value/2) + (capacity * 1.5)
 estimated_priority = min(max(round(priority, 1), 0), 100)
 
-setting, weight = get_ai_setting(energy, mood, stress, dead_hrs)
-
 st.markdown("---")
-st.subheader("📋 AI Priority Details")
+st.subheader("Priority Analysis Details")
 
 st.text("-" * 30)
 st.write(f"**Task:** {task_type}")
