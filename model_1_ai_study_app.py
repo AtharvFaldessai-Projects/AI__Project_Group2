@@ -4,7 +4,7 @@ subject_options = ["Science", "Biology", "Physics", "Chemistry", "Maths", "SST",
                    "History", "Geography", "Civics", "Economics", "English", "Other"]
 task_options = ["Homework", "Project", "Exam"]
 
-st.title("🚀 AI Task Estimator")
+st.title("AI Task Estimator")
 st.markdown("Enter your task details below to get a predicted study schedule.")
 
 subject_completed = st.selectbox("Select Subject:", subject_options).lower()
@@ -18,22 +18,22 @@ with col2:
     time_input = st.number_input(f"Avg time spent on this {task_type}:", min_value=0.0, value=60.0)
 
 if st.button("Generate Prediction"):
-    task_multiplier = student_task_difficulty
-    time_multiplier = ((student_subject_difficulty/5) + (task_multiplier/5))/2
+  task_multiplier = student_task_difficulty
+  time_multiplier = ((student_subject_difficulty/5) + (task_multiplier/5))/2
     
-    predicted_time = time_input * time_multiplier
-    difficulty_level = ((student_subject_difficulty + student_task_difficulty)/2)
+  predicted_time = time_input * time_multiplier
+  difficulty_level = ((student_subject_difficulty + student_task_difficulty)/2)
     
-    break_level = ((difficulty_level/10) + 0.25)/2
-    focus_level = (difficulty_level + 10)/2
-    break_time = (predicted_time * (break_level/10))
+  break_level = ((difficulty_level/10) + 0.25)/2
+  focus_level = (difficulty_level + 10)/2
+  break_time = (predicted_time * (break_level/10))
     
-    predicted_total_time = (predicted_time + break_time) * 0.85
-    estimation_range_low = predicted_total_time * 0.85
-    estimation_range_high = predicted_total_time * 1.15
-
+  predicted_total_time = (predicted_time + break_time) * 0.85
+  estimation_range_low = predicted_total_time * 0.85
+  estimation_range_high = predicted_total_time * 1.15
+  
     st.divider()
-    st.header("📊 Task Estimation Details")
+    st.header("Task Estimation Details")
     
     c1, c2, c3 = st.columns(3)
     c1.metric("Subject", subject_completed.title())
