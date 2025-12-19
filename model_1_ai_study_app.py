@@ -26,12 +26,12 @@ if st.button("Generate Prediction"):
     predicted_time = time_input * time_multiplier
     difficulty_level = ((student_subject_difficulty + student_task_difficulty)/2)
     
-    break_level = ((difficulty_level/10) + 0.25)/2
+    break_level = ((difficulty_level/10) + 0.35)/2
     focus_level = (difficulty_level + 10)/2
     break_time = (predicted_time * (break_level/10))
     
-    predicted_total_time = (predicted_time + break_time) * 0.85
-    estimation_range_low = predicted_total_time * 0.85
+    predicted_total_time = (predicted_time + break_time) * 0.75
+    estimation_range_low = predicted_total_time * 0.75
     estimation_range_high = predicted_total_time * 1.15
 
     # FIX: These lines below were indented too much in your previous version
