@@ -1,34 +1,23 @@
 import streamlit as st
 
 st.set_page_config(page_title="AI Priority Engine", layout="centered")
-
-def get_ai_setting(energy, mood, stress, deadline_hrs):
-    if deadline_hrs < 5 or (stress > 8 and energy > 5):
-        return "CRUNCH", 0.9
-    elif energy > 7 and mood > 6:
-        return "EFFICIENCY", 0.7
-    elif energy < 4:
-        return "RELAXED", 0.3
-    else:
-        return "COMFORTABLE", 0.5
-
 st.title("AI Priority Analysis Machine")
 st.markdown("---")
 
-st.sidebar.header("Task Context")
+st.sidebar.header("Task Details")
 task_type = st.sidebar.selectbox("Task Nature", ["Academic", "Co-Curricular", "Personal", "Other"])
-importance = st.sidebar.slider("Goal Importance", 1, 10, 5)
-impact = st.sidebar.slider("Consequence Impact", 1, 10, 5)
+importance = st.sidebar.slider("Task Importance", 1, 10, 5)
+impact = st.sidebar.slider("Consequences and Impact", 1, 10, 5)
 completion = st.sidebar.slider("Current Completion %", 0, 100, 0)
 
-st.sidebar.subheader("⏳ Temporal Data")
+st.sidebar.subheader("Time Value")
 est_val = st.sidebar.number_input("Estimated Time Value", min_value=0.1, value=1.0)
 est_unit = st.sidebar.selectbox("Estimated Unit", ["Minutes", "Hours", "Days"])
 
 dead_val = st.sidebar.number_input("Deadline Time Value", min_value=0.1, value=24.0)
 dead_unit = st.sidebar.selectbox("Deadline Unit", ["Minutes", "Hours", "Days"])
 
-st.header("🧠 Human Capacity Factor")
+st.header("Human Capacity Level")
 col1, col2 = st.columns(2)
 
 with col1:
