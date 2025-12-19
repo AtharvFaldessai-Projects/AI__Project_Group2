@@ -33,6 +33,8 @@ if st.button("Generate Prediction"):
     predicted_total_time = (predicted_time + break_time) * 0.75
     estimation_range_low = predicted_total_time * 0.75
     estimation_range_high = predicted_total_time * 1.15
+    working_total_time = predicted_total_time * 0.75
+    break_total_time = predicted_total_time *0.25
 
     # FIX: These lines below were indented too much in your previous version
     st.divider()
@@ -46,5 +48,5 @@ if st.button("Generate Prediction"):
     st.subheader(f"Predicted Total Time: {predicted_total_time:.2f} {time_unit}")
     st.info(f"Estimated Completion Range: {estimation_range_low:.2f} to {estimation_range_high:.2f} {time_unit}")
     
-    st.write(f"Working Time: {predicted_time:.2f} {time_unit}")
-    st.write(f"Break Time: {break_time:.2f} {time_unit}")
+    st.write(f"Working Time: {working_total_time:.2f} {time_unit}")
+    st.write(f"Break Time: {break_total_time:.2f} {time_unit}")
