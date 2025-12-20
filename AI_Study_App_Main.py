@@ -39,9 +39,9 @@ elif page == "Time Estimator (Model 1)":
 
     col1, col2 = st.columns(2)
     with col1:
-    time_unit = st.radio("Time Unit:", ["Minutes", "Hours"]).lower()
+        time_unit = st.radio("Time Unit:", ["Minutes", "Hours"]).lower()
     with col2:
-    time_input = st.number_input(f"Avg time spent on this {task_type}:", min_value=0.0, value=60.0)
+        time_input = st.number_input(f"Avg time spent on this {task_type}:", min_value=0.0, value=60.0)
 
     if st.button("Generate Prediction"):
         task_multiplier = student_task_difficulty
