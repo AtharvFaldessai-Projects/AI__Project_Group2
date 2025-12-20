@@ -19,7 +19,6 @@ with col2:
     time_input = st.number_input(f"Avg time spent on this {task_type}:", min_value=0.0, value=60.0)
 
 if st.button("Generate Prediction"):
-    # Everything inside the IF must be indented by exactly 4 spaces (or 1 tab)
     task_multiplier = student_task_difficulty
     time_multiplier = ((student_subject_difficulty/5) + (task_multiplier/5))/2
     
@@ -36,7 +35,6 @@ if st.button("Generate Prediction"):
     working_total_time = predicted_total_time * 0.75
     break_total_time = predicted_total_time *0.25
 
-    # FIX: These lines below were indented too much in your previous version
     st.divider()
     st.header("Task Estimation Details")
     
