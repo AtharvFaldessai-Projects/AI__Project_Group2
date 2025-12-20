@@ -25,7 +25,6 @@ if page == "Home":
         st.write("Calculates priority score based on deadlines and your mental energy.")
 
 elif page == "Time Estimator (Model 1)":
-    st.title("AI Time Estimator")
 
 subject_options = ["Science", "Biology", "Physics", "Chemistry", "Maths", "SST", 
                    "History", "Geography", "Civics", "Economics", "English", "Other"]
