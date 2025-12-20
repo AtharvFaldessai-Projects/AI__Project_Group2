@@ -42,6 +42,8 @@ urgency = min((work_left / max(dead_hrs, 0.1)) * 100, 100)
 
 priority = (urgency + value/2) + (capacity * 1.5)
 estimated_priority = min(max(round(priority, 1), 0), 100)
+urgency_level = min(urgency, 100)
+capacity_level = max(capacity, (capacity * -1), 1)
 
 if estimated_priority > 75:
     priority_setting = "Crunch setting"
@@ -57,8 +59,8 @@ st.text("-" * 30)
 st.write(f"Task: {task_type}")
 st.write(f"AI Mode: {priority_setting}")
 st.write(f"Value: {value:.2f}/100")
-st.write(f"Urgency: {urgency:.2f}%")
-st.write(f"Capacity: {capacity:.2f}")
+st.write(f"Urgency: {urgency_level:.2f}%")
+st.write(f"Capacity: {capacity_level:.2f}")
 st.text("-" * 30)
 
 st.metric(label="ESTIMATED PRIORITY SCORE", value=f"{estimated_priority}/100")
