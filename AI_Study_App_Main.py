@@ -9,7 +9,7 @@ if 'shared_task' not in st.session_state:
 
 st.sidebar.title("AI Study App")
 st.sidebar.markdown("Switch between analysis engines:")
-page = st.sidebar.selectbox("Go to:", ["Home", "Time Estimator (Model 1)", "Priority Analyst (Model 2)"])
+page = st.sidebar.selectbox("Go to:", ["Home", "Time Estimator (Model 1)", "Priority Analysis Machine (Model 2)"])
 
 if page == "Home":
     st.title("AI Study App")
