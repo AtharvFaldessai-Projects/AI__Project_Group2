@@ -4,7 +4,7 @@ subject_options = ["Science", "Biology", "Physics", "Chemistry", "Maths", "SST",
                    "History", "Geography", "Civics", "Economics", "English", "Other"]
 task_options = ["Homework", "Project", "Exam"]
 
-st.title("AI Task Estimator")
+st.title("AI Time Estimator")
 st.markdown("Enter your task details below to get a predicted study schedule.")
 
 subject_completed = st.selectbox("Select Subject:", subject_options).lower()
