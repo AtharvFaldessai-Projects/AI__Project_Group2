@@ -24,8 +24,8 @@ if page == "Home":
         st.subheader("Priority Analysis Machine (Model 2)")
         st.write("Calculates priority score based on deadlines and your mental energy.")
 
-elif page == "⏳ Time Estimator (Model 1)":
-    st.title("AI Task Estimator")
+elif page == "Time Estimator (Model 1)":
+    st.title("AI Time Estimator")
     
     subject_options = ["Science", "Biology", "Physics", "Chemistry", "Maths", "SST", 
                        "History", "Geography", "Civics", "Economics", "English", "Other"]
@@ -67,7 +67,7 @@ elif page == "⏳ Time Estimator (Model 1)":
         st.write(f"Break Time: {(predicted_total_time * 0.25):.2f} {time_unit}")
         st.success("Analysis complete. This time has been sent to the Priority Analyst!")
 
-elif page == "🔥 Priority Analyst (Model 2)":
+elif page == "Priority Analysis Machine (Model 2)":
     st.title("AI Priority Analysis Machine")
     st.markdown("---")
 
