@@ -18,10 +18,10 @@ if page == "Home":
     
     col1, col2 = st.columns(2)
     with col1:
-        st.subheader("Model 1")
+        st.subheader("Time Estimator (Model 1)")
         st.write("Predicts how long a task will take based on subject and difficulty.")
     with col2:
-        st.subheader("Model 2")
+        st.subheader("Priority Analysis Machine (Model 2)")
         st.write("Calculates priority score based on deadlines and your mental energy.")
 
 elif page == "⏳ Time Estimator (Model 1)":
