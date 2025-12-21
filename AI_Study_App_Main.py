@@ -48,7 +48,7 @@ elif page == "Time Estimator (Model 1)":
     task_type = st.selectbox("Enter task type:", task_options).lower()
     student_task_difficulty = st.slider(f"How difficult is this {task_type}?", 1.0, 10.0, 5.0)
 
-    col1, col2 = st.columns(2)
+    col1, col2, col3 = st.columns(3)
     with col1:
         time_unit = st.radio("Time Unit:", ["Minutes", "Hours"]).lower()
     with col2:
