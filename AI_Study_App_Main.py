@@ -31,6 +31,9 @@ if page == "Home":
     with col2:
         st.subheader("Priority Analysis Machine (Model 2)")
         st.write("Its role is to calculate a priority score based on deadlines and mental energy.")
+    with col3:
+        st.subheader("Priority Analysis Machine (Model 2)")
+        st.write("Its role is to calculate a priority score based on deadlines and mental energy.")
 
 # --- PAGE: MODEL 1 (TIME) ---
 elif page == "Time Estimator (Model 1)":
