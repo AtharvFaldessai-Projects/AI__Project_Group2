@@ -143,8 +143,11 @@ elif page == "Priority Analysis Machine (Model 2)":
         st.info("SETTING: COMFORTABLE MODE.")
 
     if st.button("Click here to SAVE TASK DETAILS"):
+        # Practicality Adjustment: Fallback name if Model 1 input was empty
+        final_name = st.session_state['shared_task_name'] if st.session_state['shared_task_name'] != "" else "Untitled Task"
+        
         new_task = {
-            "name": st.session_state['shared_task_name'] if st.session_state['shared_task_name'] else "New Task",
+            "name": final_name,
             "ai_time": round(est_hrs, 2),
             "user_time": round(est_hrs, 2),
             "ai_priority": estimated_priority,
@@ -152,13 +155,22 @@ elif page == "Priority Analysis Machine (Model 2)":
             "status": "Pending"
         }
         st.session_state.task_db.append(new_task)
-        st.success("Task stored in Manager!")
-
+        
+elif page == "Centralized Task Manager":
+    st.title("Centralized Task Manager")
+    
 elif page == "Centralized Task Manager":
     st.title("Centralized Task Manager")
     
     if not st.session_state.task_db:
         st.info("No tasks stored yet. Use the models to add tasks.")
     else:
+        # Convert the list of dictionaries to a DataFrame for display
         df = pd.DataFrame(st.session_state.task_db)
+        
+        # FIX: Ensure column names match dictionary keys perfectly
         st.dataframe(df[["name", "user_time", "user_priority", "status"]], use_container_width=True)
+        
+        if st.button("Clear Database"):
+            st.session_state.task_db = []
+            st.rerun()
