@@ -147,8 +147,8 @@ elif page == "Priority Analysis Machine (Model 2)":
             "name": st.session_state['shared_task_name'] if st.session_state['shared_task_name'] else "New Task",
             "ai_time": round(est_hrs, 2),
             "user_time": round(est_hrs, 2),
-            "ai_prio": estimated_priority,
-            "user_prio": estimated_priority,
+            "ai_priority": estimated_priority,
+            "user_priority": estimated_priority,
             "status": "Pending"
         }
         st.session_state.task_db.append(new_task)
@@ -161,4 +161,4 @@ elif page == "Centralized Task Manager":
         st.info("No tasks stored yet. Use the models to add tasks.")
     else:
         df = pd.DataFrame(st.session_state.task_db)
-        st.dataframe(df[["name", "user_time", "user_prio", "status"]], use_container_width=True)
+        st.dataframe(df[["name", "user_time", "user_priority", "status"]], use_container_width=True)
