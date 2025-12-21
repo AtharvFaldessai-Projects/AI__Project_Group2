@@ -40,7 +40,7 @@ elif page == "Time Estimator (Model 1)":
                        "History", "Geography", "Civics", "Economics", "English", "Other"]
     task_options = ["Homework", "Project", "Exam"]
 
-    task_name = st.text_input("Enter specific task name:", placeholder="e.g., Physics Lab Report")
+    task_name = st.text_input("Enter task name:", placeholder="e.g., Science Homework")
     subject_completed = st.selectbox("Select Subject:", subject_options).lower()
     student_subject_difficulty = st.slider("Rate subject difficulty (1-10):", 1.0, 10.0, 5.0)
     task_type = st.selectbox("Enter task type:", task_options).lower()
