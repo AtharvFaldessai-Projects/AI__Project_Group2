@@ -163,10 +163,9 @@ elif page == "Priority Analysis Machine (Model 2)":
         final_name = st.session_state['shared_task_name'] if st.session_state['shared_task_name'] != "" else "Untitled Task"
         
         new_task = {
-            "name": final_name,
-            "user_time": round(est_hrs, 2),
-            "user_priority": estimated_priority,
-            "status": "Pending"
+            "Name": final_name,
+            "Time": round(est_hrs, 2),
+            "Priority": estimated_priority,
         }
         st.session_state.task_db.append(new_task)
         
