@@ -84,7 +84,7 @@ elif page == "Time Estimator (Model 1)":
         st.write(f"Break Time: {break_total_time:.2f} {time_unit}")
 
         new_task = {
-        "Task": task_name.title()
+        "Task": task_name.title(),
         "Subject": subject_completed.title(),
         "Time (Hrs)": round(final_hrs, 2),
         "Status": "Pending"
