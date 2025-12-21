@@ -140,6 +140,13 @@ elif page == "Priority Analysis Machine (Model 2)":
 
     st.metric(label="ESTIMATED PRIORITY SCORE", value=f"{estimated_priority}/100")
 
+     if estimated_priority > 75:
+        st.error("SETTING: CRUNCH MODE - High urgency detected.")
+    elif estimated_priority < 25:
+        st.success("SETTING: RELAXED MODE - Low pressure detected.")
+    else:
+        st.info("SETTING: COMFORTABLE MODE.")
+
     if st.button("💾 SAVE TASK TO CENTRALIZED MANAGER"):
         new_task = {
             "name": st.session_state['shared_task_name'] if st.session_state['shared_task_name'] else "New Task",
