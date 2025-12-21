@@ -3,15 +3,13 @@ import pandas as pd
 
 st.set_page_config(page_title="AI Study App", layout="wide")
 
-# --- 1. INITIALIZE SHARED MEMORY (Session State) ---
 if 'task_db' not in st.session_state:
-    st.session_state.task_db = [] # This is your Centralized Location
+    st.session_state.task_db = []
 if 'shared_time' not in st.session_state:
     st.session_state['shared_time'] = 1.0
 if 'shared_task_name' not in st.session_state:
     st.session_state['shared_task_name'] = ""
 
-# --- 2. SIDEBAR NAVIGATION ---
 st.sidebar.title("AI Study App")
 st.sidebar.markdown("Switch between analysis engines:")
 page = st.sidebar.selectbox("Go to:", [
@@ -19,21 +17,20 @@ page = st.sidebar.selectbox("Go to:", [
     "Time Estimator (Model 1)", 
     "Priority Analysis Machine (Model 2)",
     "Centralized Task Manager"
-])
+]
 
-# --- PAGE: HOME ---
 if page == "Home":
-    st.title("🧠 AI Study App")
-    st.write("Welcome to your centralized task management engine.")
+    st.title("AI Study App")
+    st.write("Welcome to our AI Study App.")
     st.info("Select a model from the sidebar to begin your analysis.")
     
     col1, col2 = st.columns(2)
     with col1:
-        st.subheader("⏳ Time Estimator (Model 1)")
-        st.write("Predicts how long a task will take based on subject and difficulty.")
+        st.subheader("Time Estimator (Model 1)")
+        st.write("Its role is to predict how long a task will take based on subject and difficulty.")
     with col2:
-        st.subheader("🔥 Priority Analysis Machine (Model 2)")
-        st.write("Calculates priority score based on deadlines and mental energy.")
+        st.subheader("Priority Analysis Machine (Model 2)")
+        st.write("Its role is to calculate a priority score based on deadlines and mental energy.")
 
 # --- PAGE: MODEL 1 (TIME) ---
 elif page == "Time Estimator (Model 1)":
@@ -147,7 +144,7 @@ elif page == "Priority Analysis Machine (Model 2)":
     else:
         st.info("SETTING: COMFORTABLE MODE.")
 
-    if st.button("💾 SAVE TASK TO CENTRALIZED MANAGER"):
+    if st.button("Click here to SAVE TASK DETAILS"):
         new_task = {
             "name": st.session_state['shared_task_name'] if st.session_state['shared_task_name'] else "New Task",
             "ai_time": round(est_hrs, 2),
@@ -161,7 +158,7 @@ elif page == "Priority Analysis Machine (Model 2)":
 
 # --- PAGE: TASK MANAGER ---
 elif page == "Centralized Task Manager":
-    st.title("📂 Centralized Task Manager")
+    st.title("Centralized Task Manager")
     
     if not st.session_state.task_db:
         st.info("No tasks stored yet. Use the models to add tasks.")
@@ -170,7 +167,7 @@ elif page == "Centralized Task Manager":
         st.dataframe(df[["name", "user_time", "user_prio", "status"]], use_container_width=True)
         
         st.divider()
-        st.subheader("🧠 Habit Learning (Refinement)")
+        st.subheader("Habit Learning (Refinement)")
         task_names = [t["name"] for t in st.session_state.task_db]
         selected = st.selectbox("Select Task to Refine:", task_names)
         
