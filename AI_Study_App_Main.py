@@ -74,8 +74,7 @@ elif page == "Time Estimator (Model 1)":
         c2.metric("Difficulty Level", f"{difficulty_level:.1f}/10")
         c3.metric("Focus Level", f"{focus_level:.1f}")
         st.subheader(f"Predicted Total Time: {predicted_total_time:.2f} {time_unit}")
-        st.success("Data prepared for Priority Analysis!")
-
+    
 elif page == "Priority Analysis Machine (Model 2)":
     st.title("AI Priority Analysis Machine")
     
