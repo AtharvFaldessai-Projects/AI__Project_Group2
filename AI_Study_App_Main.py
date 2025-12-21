@@ -21,7 +21,7 @@ page = st.sidebar.selectbox("Platforms:", [
 if page == "Home":
     st.title("AI Study App")
     st.write("Welcome to our AI Study App.")
-    st.info("Please select a model:")
+    st.info("Please select a model from the sidebar:")
     
     col1, col2, col3 = st.columns(3)
     with col1:
@@ -163,20 +163,4 @@ elif page == "Centralized Task Manager":
     else:
         df = pd.DataFrame(st.session_state.task_db)
         st.dataframe(df[["name", "user_time", "user_prio", "status"]], use_container_width=True)
-        
-        st.divider()
-        st.subheader("Habit Learning (Refinement)")
-        task_names = [t["name"] for t in st.session_state.task_db]
-        selected = st.selectbox("Select Task to Refine:", task_names)
-        
-        idx = next(i for i, t in enumerate(st.session_state.task_db) if t["name"] == selected)
-        
-        col_a, col_b = st.columns(2)
-        new_time = col_a.number_input("Actual Time Taken (hrs):", value=float(st.session_state.task_db[idx]["user_time"]))
-        new_prio = col_b.slider("Actual Priority Felt:", 0, 100, int(st.session_state.task_db[idx]["user_prio"]))
-        
-        if st.button("Update Habit Record"):
-            st.session_state.task_db[idx]["user_time"] = new_time
-            st.session_state.task_db[idx]["user_prio"] = new_prio
-            st.success("AI is learning from your study habits!")
-            st.rerun()
+rerun()
