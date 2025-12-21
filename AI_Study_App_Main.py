@@ -164,9 +164,7 @@ elif page == "Priority Analysis Machine (Model 2)":
         
         new_task = {
             "name": final_name,
-            "ai_time": round(est_hrs, 2),
             "user_time": round(est_hrs, 2),
-            "ai_priority": estimated_priority,
             "user_priority": estimated_priority,
             "status": "Pending"
         }
