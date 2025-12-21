@@ -53,20 +53,43 @@ elif page == "Time Estimator (Model 1)":
         time_input = st.number_input(f"Avg time spent on this {task_type}:", min_value=0.0, value=60.0)
         
     if st.button("Generate & Save to Manager"):
-        time_multiplier = ((student_subject_difficulty/5) + (student_task_difficulty/5))/2
+        task_multiplier = student_task_difficulty
+        time_multiplier = ((student_subject_difficulty/5) + (task_multiplier/5))/2
+    
         predicted_time = time_input * time_multiplier
-        predicted_total_time = predicted_time * 0.75
+        difficulty_level = ((student_subject_difficulty + student_task_difficulty)/2)
     
-        final_hrs = predicted_total_time if time_unit == "hours" else predicted_total_time / 60
+        break_level = ((difficulty_level/10) + 0.35)/2
+        focus_level = (difficulty_level + 10)/2 - 1.5
+        break_time = (predicted_time * (break_level/10))
+    
+        predicted_total_time = (predicted_time + break_time) * 0.75
+        estimation_range_low = predicted_total_time * 0.75
+        estimation_range_high = predicted_total_time * 1.15
+        working_total_time = predicted_total_time * 0.75
+        break_total_time = predicted_total_time *0.25
 
-        new_task = {
-            "Task": "Science Homework", # Or use a text_input variable
-            "Subject": subject_completed.title(),
-            "Time (Hrs)": round(final_hrs, 2),
-            "Status": "Pending"
-        }
+        st.divider()
+        st.header("Task Estimation Details")
     
-        st.session_state.task_db.append(new_task)
+        c1, c2, c3 = st.columns(3)
+        c1.metric("Subject", subject_completed.title())
+        c2.metric("Difficulty Level", f"{difficulty_level:.1f}/10")
+        c3.metric("Focus Level", f"{focus_level:.1f}")
+
+        st.subheader(f"Predicted Total Time: {predicted_total_time:.2f} {time_unit}")
+        st.info(f"Estimated Completion Range: {estimation_range_low:.2f} to {estimation_range_high:.2f} {time_unit}")
+    
+        st.write(f"Working Time: {working_total_time:.2f} {time_unit}")
+        st.write(f"Break Time: {break_total_time:.2f} {time_unit}")
+            new_task = {
+                "Task": "Science Homework", # Or use a text_input variable
+                "Subject": subject_completed.title(),
+                "Time (Hrs)": round(final_hrs, 2),
+                "Status": "Pending"
+            }
+    
+            st.session_state.task_db.append(new_task)
         
 elif page == "Priority Analysis Machine (Model 2)":
     st.title("AI Priority Analysis Machine")
