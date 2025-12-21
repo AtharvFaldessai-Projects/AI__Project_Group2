@@ -82,14 +82,14 @@ elif page == "Time Estimator (Model 1)":
     
         st.write(f"Working Time: {working_total_time:.2f} {time_unit}")
         st.write(f"Break Time: {break_total_time:.2f} {time_unit}")
-            new_task = {
-                "Task": "Science Homework", # Or use a text_input variable
-                "Subject": subject_completed.title(),
-                "Time (Hrs)": round(final_hrs, 2),
-                "Status": "Pending"
-            }
+        new_task = {
+            "Task": "Science Homework", # Or use a text_input variable
+            "Subject": subject_completed.title(),
+            "Time (Hrs)": round(final_hrs, 2),
+            "Status": "Pending"
+        }
     
-            st.session_state.task_db.append(new_task)
+        st.session_state.task_db.append(new_task)
         
 elif page == "Priority Analysis Machine (Model 2)":
     st.title("AI Priority Analysis Machine")
