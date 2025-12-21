@@ -51,17 +51,14 @@ elif page == "Time Estimator (Model 1)":
         time_unit = st.radio("Time Unit:", ["Minutes", "Hours"]).lower()
     with col2:
         time_input = st.number_input(f"Avg time spent on this {task_type}:", min_value=0.0, value=60.0)
-
-if st.button("Generate & Save to Manager"):
-    # Calculation Logic
+        
+    if st.button("Generate & Save to Manager"):
     time_multiplier = ((student_subject_difficulty/5) + (student_task_difficulty/5))/2
     predicted_time = time_input * time_multiplier
     predicted_total_time = predicted_time * 0.75
     
-    # Convert to hours for the manager
     final_hrs = predicted_total_time if time_unit == "hours" else predicted_total_time / 60
 
-    # DATA EXTRACTION STEP
     new_task = {
         "Task": "Science Homework", # Or use a text_input variable
         "Subject": subject_completed.title(),
@@ -69,11 +66,9 @@ if st.button("Generate & Save to Manager"):
         "Status": "Pending"
     }
     
-    # Push to central list
     st.session_state.task_db.append(new_task)
     st.success("Analysis Complete & Saved to Manager!")
-    st.balloons()
-    
+        
 elif page == "Priority Analysis Machine (Model 2)":
     st.title("AI Priority Analysis Machine")
     
