@@ -53,21 +53,20 @@ elif page == "Time Estimator (Model 1)":
         time_input = st.number_input(f"Avg time spent on this {task_type}:", min_value=0.0, value=60.0)
         
     if st.button("Generate & Save to Manager"):
-    time_multiplier = ((student_subject_difficulty/5) + (student_task_difficulty/5))/2
-    predicted_time = time_input * time_multiplier
-    predicted_total_time = predicted_time * 0.75
+        time_multiplier = ((student_subject_difficulty/5) + (student_task_difficulty/5))/2
+        predicted_time = time_input * time_multiplier
+        predicted_total_time = predicted_time * 0.75
     
-    final_hrs = predicted_total_time if time_unit == "hours" else predicted_total_time / 60
+        final_hrs = predicted_total_time if time_unit == "hours" else predicted_total_time / 60
 
-    new_task = {
-        "Task": "Science Homework", # Or use a text_input variable
-        "Subject": subject_completed.title(),
-        "Time (Hrs)": round(final_hrs, 2),
-        "Status": "Pending"
-    }
+        new_task = {
+            "Task": "Science Homework", # Or use a text_input variable
+            "Subject": subject_completed.title(),
+            "Time (Hrs)": round(final_hrs, 2),
+            "Status": "Pending"
+        }
     
-    st.session_state.task_db.append(new_task)
-    st.success("Analysis Complete & Saved to Manager!")
+        st.session_state.task_db.append(new_task)
         
 elif page == "Priority Analysis Machine (Model 2)":
     st.title("AI Priority Analysis Machine")
