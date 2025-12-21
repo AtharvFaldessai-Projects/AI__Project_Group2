@@ -86,7 +86,7 @@ elif page == "Time Estimator (Model 1)":
         new_task = {
         "Task": task_name.title(),
         "Subject": subject_completed.title(),
-        "Time (Hrs)": round(final_hrs, 2),
+        "Time (Hrs)": round(predicted_total_time, 2),
         "Status": "Pending"
         }
     
