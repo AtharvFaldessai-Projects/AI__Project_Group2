@@ -11,7 +11,7 @@ if 'shared_task_name' not in st.session_state:
     st.session_state['shared_task_name'] = ""
 
 st.sidebar.title("AI Study App")
-st.sidebar.markdown("Switch between analysis engines:")
+st.sidebar.markdown("Segments:")
 page = st.sidebar.selectbox("Go to:", [
     "Home", 
     "Time Estimator (Model 1)", 
@@ -22,7 +22,7 @@ page = st.sidebar.selectbox("Go to:", [
 if page == "Home":
     st.title("AI Study App")
     st.write("Welcome to our AI Study App.")
-    st.info("Select a model from the sidebar to begin your analysis.")
+    st.info("Please select a model:")
     
     col1, col2, col3 = st.columns(3)
     with col1:
@@ -35,7 +35,6 @@ if page == "Home":
         st.subheader("Task Manager (Model 3)")
         st.write("Its role is to provide a centralised platform for task management.")
 
-# --- PAGE: MODEL 1 (TIME) ---
 elif page == "Time Estimator (Model 1)":
     st.title("AI Time Estimator")
     subject_options = ["Science", "Biology", "Physics", "Chemistry", "Maths", "SST", 
@@ -78,7 +77,6 @@ elif page == "Time Estimator (Model 1)":
         st.subheader(f"Predicted Total Time: {predicted_total_time:.2f} {time_unit}")
         st.success("Data prepared for Priority Analysis!")
 
-# --- PAGE: MODEL 2 (PRIORITY) ---
 elif page == "Priority Analysis Machine (Model 2)":
     st.title("AI Priority Analysis Machine")
     
@@ -104,7 +102,6 @@ elif page == "Priority Analysis Machine (Model 2)":
         motivation = st.slider("Motivation (1: Bored, 10: Dedicated)", 1, 10, 5)
         stress = st.slider("Stress Level (1: None, 10: Max)", 1, 10, 2)
 
-    # Conversion & Priority Logic
     def to_hours(val, unit):
         if unit == "Minutes": return val / 60
         if unit == "Days": return val * 24
@@ -159,7 +156,6 @@ elif page == "Priority Analysis Machine (Model 2)":
         st.session_state.task_db.append(new_task)
         st.success("Task stored in Manager!")
 
-# --- PAGE: TASK MANAGER ---
 elif page == "Centralized Task Manager":
     st.title("Centralized Task Manager")
     
