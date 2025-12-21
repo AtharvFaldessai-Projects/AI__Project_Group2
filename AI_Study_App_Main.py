@@ -17,7 +17,7 @@ page = st.sidebar.selectbox("Go to:", [
     "Time Estimator (Model 1)", 
     "Priority Analysis Machine (Model 2)",
     "Centralized Task Manager"
-]
+])
 
 if page == "Home":
     st.title("AI Study App")
