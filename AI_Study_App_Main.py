@@ -116,6 +116,8 @@ elif page == "Priority Analysis Machine (Model 2)":
     capacity = (energy - (mood + stress/10)) * (1 + (motivation/100))
     work_left = est_hrs * (1 - (completion/100))
     urgency = min((work_left / max(dead_hrs, 0.1)) * 100, 100)
+    urgency_level = min(urgency, 100)
+    capacity_level = max(capacity, (capacity * -1), 1)
     priority = (urgency + value/2) + (capacity * 1.5)
     estimated_priority = min(max(round(priority, 1), 0), 100)
 
