@@ -90,7 +90,7 @@ elif page == "Time Estimator (Model 1)":
         "Status": "Pending"
         }
     
-         st.session_state.task_db.append(new_task)
+        st.session_state.task_db.append(new_task)
 
         
 elif page == "Priority Analysis Machine (Model 2)":
