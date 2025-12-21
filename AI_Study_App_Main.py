@@ -24,7 +24,7 @@ if page == "Home":
     st.write("Welcome to our AI Study App.")
     st.info("Select a model from the sidebar to begin your analysis.")
     
-    col1, col2 = st.columns(2)
+    col1, col2, col3 = st.columns(3)
     with col1:
         st.subheader("Time Estimator (Model 1)")
         st.write("Its role is to predict how long a task will take based on subject and difficulty.")
