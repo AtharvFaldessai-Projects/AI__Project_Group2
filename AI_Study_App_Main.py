@@ -155,9 +155,8 @@ elif page == "Centralized Task Manager":
     if not st.session_state.task_db:
         st.info("No tasks analyzed yet.")
     else:
-        # Convert the memory list into a visual table
-        df = pd.DataFrame(st.session_state.task_db)
-        st.table(df) # Shows the extracted data clearly
+       df = pd.DataFrame(st.session_state.task_db)
+        st.table(df)
         
         if st.button("Clear Manager"):
             st.session_state.task_db = []
