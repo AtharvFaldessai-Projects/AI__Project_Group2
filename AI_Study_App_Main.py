@@ -11,8 +11,7 @@ if 'shared_task_name' not in st.session_state:
     st.session_state['shared_task_name'] = ""
 
 st.sidebar.title("AI Study App")
-st.sidebar.markdown("Segments:")
-page = st.sidebar.selectbox("Go to:", [
+page = st.sidebar.selectbox("Platforms:", [
     "Home", 
     "Time Estimator (Model 1)", 
     "Priority Analysis Machine (Model 2)",
