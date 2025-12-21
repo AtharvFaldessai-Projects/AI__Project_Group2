@@ -156,7 +156,7 @@ elif page == "Priority Analysis Machine (Model 2)":
         
         new_task = {
             "Name": final_name,
-            "Time": round(est_hrs, 2) "hours",
+            "Time": round(est_hrs, 2), "hours",
             "Priority": estimated_priority,
         }
         st.session_state.task_db.append(new_task)
