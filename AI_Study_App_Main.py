@@ -156,10 +156,10 @@ elif page == "Priority Analysis Machine (Model 2)":
         st.session_state.task_db.append(new_task)
         
 elif page == "Centralized Task Manager":
-    st.title("📂 Centralized Task Manager")
+    st.title("Centralized Task Manager")
     
     if not st.session_state.task_db:
-        st.info("No tasks analyzed yet. Please run Model 1 or 2 first.")
+        st.info("No tasks analyzed yet.")
     else:
         # Convert the memory list into a visual table
         df = pd.DataFrame(st.session_state.task_db)
