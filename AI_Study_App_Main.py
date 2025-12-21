@@ -158,6 +158,6 @@ elif page == "Centralized Task Manager":
        df = pd.DataFrame(st.session_state.task_db)
        st.table(df)
         
-        if st.button("Clear Manager"):
+    if st.button("Clear Manager"):
             st.session_state.task_db = []
             st.rerun()
