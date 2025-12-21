@@ -156,7 +156,7 @@ elif page == "Centralized Task Manager":
         st.info("No tasks analyzed yet.")
     else:
        df = pd.DataFrame(st.session_state.task_db)
-        st.table(df)
+       st.table(df)
         
         if st.button("Clear Manager"):
             st.session_state.task_db = []
