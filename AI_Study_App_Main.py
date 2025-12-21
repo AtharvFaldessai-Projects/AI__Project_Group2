@@ -163,4 +163,3 @@ elif page == "Centralized Task Manager":
     else:
         df = pd.DataFrame(st.session_state.task_db)
         st.dataframe(df[["name", "user_time", "user_prio", "status"]], use_container_width=True)
-rerun()
