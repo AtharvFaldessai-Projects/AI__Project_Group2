@@ -119,6 +119,23 @@ elif page == "Priority Analysis Machine (Model 2)":
     priority = (urgency + value/2) + (capacity * 1.5)
     estimated_priority = min(max(round(priority, 1), 0), 100)
 
+    if estimated_priority > 75:
+        priority_setting = "Crunch setting"
+    elif estimated_priority < 25:
+        priority_setting = "Relaxed setting"
+    else:
+        priority_setting = "Comfortable setting"
+
+    st.markdown("---")
+    st.subheader("Priority Analysis Details")
+    st.text("-" * 30)
+    st.write(f"Task: {task_nature}")
+    st.write(f"AI Mode: {priority_setting}")
+    st.write(f"Value: {value:.2f}/100")
+    st.write(f"Urgency: {urgency_level:.2f}%")
+    st.write(f"Capacity: {capacity_level:.2f}")
+    st.text("-" * 30)
+
     st.metric(label="ESTIMATED PRIORITY SCORE", value=f"{estimated_priority}/100")
 
     if st.button("💾 SAVE TASK TO CENTRALIZED MANAGER"):
@@ -131,7 +148,6 @@ elif page == "Priority Analysis Machine (Model 2)":
             "status": "Pending"
         }
         st.session_state.task_db.append(new_task)
-        st.balloons()
         st.success("Task stored in Manager!")
 
 # --- PAGE: TASK MANAGER ---
