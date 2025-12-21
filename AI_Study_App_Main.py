@@ -52,28 +52,27 @@ elif page == "Time Estimator (Model 1)":
     with col2:
         time_input = st.number_input(f"Avg time spent on this {task_type}:", min_value=0.0, value=60.0)
 
-    if st.button("Generate Prediction"):
-        # Math Logic
-        task_multiplier = student_task_difficulty
-        time_multiplier = ((student_subject_difficulty/5) + (task_multiplier/5))/2
-        predicted_time = time_input * time_multiplier
-        difficulty_level = ((student_subject_difficulty + student_task_difficulty)/2)
-        break_level = ((difficulty_level/10) + 0.35)/2
-        focus_level = (difficulty_level + 10)/2 - 1.5
-        break_time = (predicted_time * (break_level/10))
-        predicted_total_time = (predicted_time + break_time) * 0.75
-        
-        # Save to session state to pass to Model 2
-        st.session_state['shared_time'] = predicted_total_time if time_unit == "hours" else predicted_total_time / 60
-        st.session_state['shared_task_name'] = task_name
-        
-        st.divider()
-        st.header("Task Estimation Details")
-        c1, c2, c3 = st.columns(3)
-        c1.metric("Subject", subject_completed.title())
-        c2.metric("Difficulty Level", f"{difficulty_level:.1f}/10")
-        c3.metric("Focus Level", f"{focus_level:.1f}")
-        st.subheader(f"Predicted Total Time: {predicted_total_time:.2f} {time_unit}")
+if st.button("Generate & Save to Manager"):
+    # Calculation Logic
+    time_multiplier = ((student_subject_difficulty/5) + (student_task_difficulty/5))/2
+    predicted_time = time_input * time_multiplier
+    predicted_total_time = predicted_time * 0.75
+    
+    # Convert to hours for the manager
+    final_hrs = predicted_total_time if time_unit == "hours" else predicted_total_time / 60
+
+    # DATA EXTRACTION STEP
+    new_task = {
+        "Task": "Science Homework", # Or use a text_input variable
+        "Subject": subject_completed.title(),
+        "Time (Hrs)": round(final_hrs, 2),
+        "Status": "Pending"
+    }
+    
+    # Push to central list
+    st.session_state.task_db.append(new_task)
+    st.success("Analysis Complete & Saved to Manager!")
+    st.balloons()
     
 elif page == "Priority Analysis Machine (Model 2)":
     st.title("AI Priority Analysis Machine")
@@ -157,20 +156,15 @@ elif page == "Priority Analysis Machine (Model 2)":
         st.session_state.task_db.append(new_task)
         
 elif page == "Centralized Task Manager":
-    st.title("Centralized Task Manager")
-    
-elif page == "Centralized Task Manager":
-    st.title("Centralized Task Manager")
+    st.title("📂 Centralized Task Manager")
     
     if not st.session_state.task_db:
-        st.info("No tasks stored yet. Use the models to add tasks.")
+        st.info("No tasks analyzed yet. Please run Model 1 or 2 first.")
     else:
-        # Convert the list of dictionaries to a DataFrame for display
+        # Convert the memory list into a visual table
         df = pd.DataFrame(st.session_state.task_db)
+        st.table(df) # Shows the extracted data clearly
         
-        # FIX: Ensure column names match dictionary keys perfectly
-        st.dataframe(df[["name", "user_time", "user_priority", "status"]], use_container_width=True)
-        
-        if st.button("Clear Database"):
+        if st.button("Clear Manager"):
             st.session_state.task_db = []
             st.rerun()
