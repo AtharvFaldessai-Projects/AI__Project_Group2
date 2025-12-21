@@ -82,6 +82,16 @@ elif page == "Time Estimator (Model 1)":
     
         st.write(f"Working Time: {working_total_time:.2f} {time_unit}")
         st.write(f"Break Time: {break_total_time:.2f} {time_unit}")
+
+        new_task = {
+        "Task": task_name.title()
+        "Subject": subject_completed.title(),
+        "Time (Hrs)": round(final_hrs, 2),
+        "Status": "Pending"
+        }
+    
+         st.session_state.task_db.append(new_task)
+
         
 elif page == "Priority Analysis Machine (Model 2)":
     st.title("AI Priority Analysis Machine")
@@ -155,8 +165,6 @@ elif page == "Priority Analysis Machine (Model 2)":
         final_name = st.session_state['shared_task_name'] if st.session_state['shared_task_name'] != "" else "Untitled Task"
         
         new_task = {
-            "Name": final_name,
-            "Time": round(est_hrs, 2),
             "Priority": estimated_priority,
         }
         st.session_state.task_db.append(new_task)
