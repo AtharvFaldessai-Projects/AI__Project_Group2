@@ -55,7 +55,9 @@ elif page == "Time Estimator":
         time_multiplier = ((student_subject_difficulty/5) + (student_task_difficulty/5))/2
         predicted_time = time_input * time_multiplier
         difficulty_level = ((student_subject_difficulty + student_task_difficulty)/2)
-        break_time = (predicted_time * (((difficulty_level/10) + 0.35)/20))
+        break_level = ((difficulty_level/10) + 0.35)/2
+        focus_level = (difficulty_level + 10)/2 - 1.5
+        break_time = (predicted_time * (break_level/10))
         predicted_total_time = (predicted_time + break_time) * 0.75
         
         st.session_state['shared_time'] = predicted_total_time if time_unit == "hours" else predicted_total_time / 60
