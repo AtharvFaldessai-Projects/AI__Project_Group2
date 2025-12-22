@@ -1,4 +1,4 @@
-import streamlit as st
+mimport streamlit as st
 import pandas as pd
 
 st.set_page_config(page_title="AI Study App", layout="wide")
@@ -155,7 +155,7 @@ elif page == "Priority Analysis Machine":
     st.write(f"Capacity: {capacity_level:.2f}")
     st.text("-" * 30)
 
-    st.metric(label="AI PRIORITY SCORE", value=f"{priority}/100")
+    st.metric(label="AI PRIORITY SCORE", value=f"{estimated_priority:.2f}/100")
 
     if estimated_priority > 75:
         st.error(f"SETTING: CRUNCH MODE - High urgency detected.")
