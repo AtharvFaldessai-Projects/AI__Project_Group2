@@ -157,19 +157,19 @@ elif page == "Priority Analysis Machine":
 
     st.metric(label="AI PRIORITY SCORE", value=f"{priority}/100")
 
-    if st.button("Update Priority in Manager"):
-        if st.session_state.task_db:
-            st.session_state.task_db[-1]["Priority"] = priority
-            st.success("Priority Integrated!")
-        else:
-            st.error("Create a task in Model 1 first!")
-
     if estimated_priority > 75:
         st.error(f"SETTING: CRUNCH MODE - High urgency detected.")
     elif estimated_priority < 25:
         st.success(f"SETTING: RELAXED MODE - Low pressure detected.")
     else:
         st.info(f"SETTING: COMFORTABLE MODE.")
+
+    if st.button("Update Priority in Manager"):
+        if st.session_state.task_db:
+            st.session_state.task_db[-1]["Priority"] = priority
+            st.success("Priority Integrated!")
+        else:
+            st.error("Create a task in Model 1 first!")
 
     st.text("-" * 50)
 
