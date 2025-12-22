@@ -20,10 +20,9 @@ page = st.sidebar.selectbox("Platforms:", [
     "Centralized Task Manager",
     "Timetable Generator",
     "Data Visualization",
-    "Feedback Loop"
+    "
 ])
 
-# --- HOME PAGE ---
 if page == "Home":
     st.title("AI Study App")
     st.write("Welcome to the AI Study App. Navigate through the sidebar to manage your studies.")
