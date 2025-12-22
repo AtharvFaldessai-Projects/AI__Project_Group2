@@ -166,7 +166,7 @@ elif page == "Priority Analysis Machine":
         st.session_state.task_db[-1]["Priority"] = estimated_priority
         st.success("Priority score saved to the Task Manager!")
     else:
-        st.error("Please run the Time Estimator and Priority Analysis Machine first")
+        st.error("Error. Please retry")
 
     st.text("-" * 50)
 
