@@ -48,11 +48,14 @@ elif page == "Time Estimator":
     time_input = column_6.number_input(f"Avg time spent:", min_value=0.0, value=60.0)
         
     if st.button("Generate & Save to Manager"):
+        
         time_multiplier = ((student_subject_difficulty/5) + (student_task_difficulty/5))/2
         predicted_time = time_input * time_multiplier
+        
         difficulty_level = ((student_subject_difficulty + student_task_difficulty)/2)
         break_level = ((difficulty_level/10) + 0.35)/2
         focus_level = (difficulty_level + 10)/2 - 1.5
+        
         break_time = (predicted_time * (break_level/10))
         predicted_total_time = (predicted_time + break_time) * 0.75
         estimation_range_low = predicted_total_time * 0.75
