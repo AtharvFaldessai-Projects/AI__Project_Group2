@@ -142,14 +142,6 @@ elif page == "Timetable Generator":
             curr = end
         st.table(pd.DataFrame(schedule_data))
 
-# --- DATA VISUALIZATION ---
-elif page == "Data Visualization":
-    st.title("📊 Study Analytics")
-    if st.session_state.task_db:
-        df = pd.DataFrame(st.session_state.task_db)
-        st.bar_chart(df.groupby("Subject")["Time (Hrs)"].sum())
-        st.scatter_chart(df, x="Time (Hrs)", y="Priority")
-
 # --- DUAL FEEDBACK LOOP ---
 elif page == "Feedback Loop":
     st.title("🔄 AI Feedback Loop (Time & Priority)")
