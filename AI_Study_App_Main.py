@@ -103,10 +103,33 @@ elif page == "Priority Analysis Machine":
     motivation = col2.slider("Motivation (1-10)", 1, 10, 5)
     stress = col2.slider("Stress Level (1-10)", 1, 10, 2)
 
-    value = 50 
+    value = ((importance + impact) / 2) * 10
     capacity = (energy - (mood + stress/10)) * (1 + (motivation/100))
-    urgency = (est_val / max(dead_val, 0.1)) * 100
-    priority = min(max(round((urgency + value/2) + (capacity * 1.5), 1), 0), 100)
+    work_left = est_hrs * (1 - (completion/100))
+    urgency = min((work_left / max(dead_hrs, 0.1)) * 100, 100)
+
+    priority = (urgency + value/2) + (capacity * 1.5)
+    estimated_priority = min(max(round(priority, 1), 0), 100)
+    urgency_level = min(urgency, 100)
+    capacity_level = max(capacity, (capacity * -1), 1)
+
+    if estimated_priority > 75:
+        priority_setting = "Crunch setting"
+    elif estimated_priority < 25:
+        priority_setting = "Relaxed setting"
+    else:
+        priority_setting = "Comfortable setting"
+    
+    st.markdown("---")
+    st.subheader("Priority Analysis Details")
+
+    st.text("-" * 30)
+    st.write(f"Task: {task_type}")
+    st.write(f"AI Mode: {priority_setting}")
+    st.write(f"Value: {value:.2f}/100")
+    st.write(f"Urgency: {urgency_level:.2f}%")
+    st.write(f"Capacity: {capacity_level:.2f}")
+    st.text("-" * 30)
 
     st.metric(label="AI PRIORITY SCORE", value=f"{priority}/100")
 
@@ -116,6 +139,15 @@ elif page == "Priority Analysis Machine":
             st.success("Priority Integrated!")
         else:
             st.error("Create a task in Model 1 first!")
+
+    if estimated_priority > 75:
+        st.error(f"SETTING: CRUNCH MODE - High urgency detected.")
+    elif estimated_priority < 25:
+        st.success(f"SETTING: RELAXED MODE - Low pressure detected.")
+    else:
+        st.info(f"SETTING: COMFORTABLE MODE.")
+
+    st.text("-" * 50)
 
 elif page == "Centralized Task Manager":
     st.title("Centralized Task Manager")
