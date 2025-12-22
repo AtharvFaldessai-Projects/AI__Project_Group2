@@ -15,7 +15,7 @@ page = st.sidebar.selectbox("Platforms:", [
     "Home", 
     "Time Estimator", 
     "Priority Analysis Machine",
-    "Centralized Task Manager",
+    "Task Manager",
 ])
 
 if page == "Home":
