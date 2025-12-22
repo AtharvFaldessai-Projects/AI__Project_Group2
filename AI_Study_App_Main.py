@@ -181,3 +181,30 @@ elif page == "Centralized Task Manager":
     if st.button("Clear Manager"):
             st.session_state.task_db = []
             st.rerun()
+
+elif page == "Timetable Generator":
+    st.title("AI Timetable Generator")
+
+    if not st.session_state.task_db:
+        st.warning("No tasks found in the Manager. Please analyze tasks first!")
+    else:
+        st.write("Generating your schedule based on AI-predicted times...")
+        
+        start_time = st.number_input("What hour do you want to start? (e.g., 14 for 2 PM)", 0, 23, 9)
+        
+        schedule_data = []
+        current_hour = float(start_time)
+
+        for task in st.session_state.task_db:
+            duration = task["Time (Hrs)"]
+            end_hour = current_hour + duration
+            
+            schedule_data.append({
+                "Slot": f"{int(current_hour):02d}:00 - {int(end_hour):02d}:{(int((end_hour%1)*60)):02d}",
+                "Task Name": task["name"],
+                "Duration": f"{duration} hrs"
+            })
+            current_hour = end_hour
+
+        st.table(pd.DataFrame(schedule_data))
+        st.success("Timetable generated using extracted data!")
