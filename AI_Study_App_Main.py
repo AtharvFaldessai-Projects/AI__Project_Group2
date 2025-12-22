@@ -15,7 +15,8 @@ page = st.sidebar.selectbox("Platforms:", [
     "Home", 
     "Time Estimator (Model 1)", 
     "Priority Analysis Machine (Model 2)",
-    "Centralized Task Manager"
+    "Centralized Task Manager",
+    "Timetable Generator",
 ])
 
 if page == "Home":
@@ -30,6 +31,9 @@ if page == "Home":
     with col2:
         st.subheader("Priority Analysis Machine (Model 2)")
         st.write("Its role is to calculate a priority score based on deadlines and mental energy.")
+    with col3:
+        st.subheader("Task Manager (Model 3)")
+        st.write("Its role is to provide a centralised platform for task management.")
     with col3:
         st.subheader("Task Manager (Model 3)")
         st.write("Its role is to provide a centralised platform for task management.")
