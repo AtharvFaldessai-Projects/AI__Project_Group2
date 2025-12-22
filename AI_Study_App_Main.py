@@ -59,6 +59,10 @@ elif page == "Time Estimator":
         focus_level = (difficulty_level + 10)/2 - 1.5
         break_time = (predicted_time * (break_level/10))
         predicted_total_time = (predicted_time + break_time) * 0.75
+        estimation_range_low = predicted_total_time * 0.75
+        estimation_range_high = predicted_total_time * 1.15
+        working_total_time = predicted_total_time * 0.75
+        break_total_time = predicted_total_time *0.25
         
         st.session_state['shared_time'] = predicted_total_time if time_unit == "hours" else predicted_total_time / 60
         st.session_state['shared_task_name'] = task_name if task_name else "Untitled Task"
