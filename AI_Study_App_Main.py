@@ -22,14 +22,14 @@ if page == "Home":
     st.title("AI Study App")
     st.write("Welcome to our AI Study App. Use the sidebar to switch between segments.")
     
-    col1, col2, col3, col4 = st.columns(4)
-    with col1:
+    column_1, column_2, column_3, column_4 = st.columns(4)
+    with column_1:
         st.subheader("Time Estimator")
         st.write("Predicts the time taken to complete a task.")
-    with col2:
+    with column_2:
         st.subheader("Priority Analysis Machine")
         st.write("Calculates the priority score of a particular task.")
-    with col3:
+    with column_3:
         st.subheader("Task Manager")
         st.write("Acts as a centralized dashboard for viewing all your tasks.")
 
@@ -43,9 +43,9 @@ elif page == "Time Estimator":
     task_type = st.selectbox("Task type:", ["Homework", "Project", "Exam"]).lower()
     student_task_difficulty = st.slider(f"Task difficulty:", 1.0, 10.0, 5.0)
 
-    col1, col2 = st.columns(2)
-    time_unit = col1.radio("Time Unit:", ["Minutes", "Hours"]).lower()
-    time_input = col2.number_input(f"Avg time spent:", min_value=0.0, value=60.0)
+    column_5, column_6 = st.columns(2)
+    time_unit = column_5.radio("Time Unit:", ["Minutes", "Hours"]).lower()
+    time_input = column_6.number_input(f"Avg time spent:", min_value=0.0, value=60.0)
         
     if st.button("Generate & Save to Manager"):
         time_multiplier = ((student_subject_difficulty/5) + (student_task_difficulty/5))/2
@@ -84,7 +84,7 @@ elif page == "Time Estimator":
         st.write(f"Working Time: {working_total_time:.2f} {time_unit}")
         st.write(f"Break Time: {break_total_time:.2f} {time_unit}")
         st.session_state.task_db.append(new_task)
-        st.success("Task Extracted to Manager!")
+        st.success("Task successfully saved in Task Manager.")
 
 elif page == "Priority Analysis Machine":
 
@@ -169,17 +169,17 @@ elif page == "Priority Analysis Machine":
 
     st.text("-" * 50)
 
-elif page == "Centralized Task Manager":
-    st.title("Centralized Task Manager")
+elif page == "Task Manager":
+    st.title("Task Manager")
     
     if not st.session_state.task_db:
-        st.info("Database empty.")
+        st.info("No task data currently inputted.")
     else:
         st.subheader("Stored Task Data")
         st.table(pd.DataFrame(st.session_state.task_db))
         
         st.divider()
-        st.subheader("🔄 User Confirmation & Calibration")
+        st.subheader("User Confirmation & Calibration")
         
         task_names = [t["Task"] for t in st.session_state.task_db]
         selected = st.selectbox("Select Task to Calibrate:", task_names)
@@ -192,7 +192,7 @@ elif page == "Centralized Task Manager":
                 with c2:
                     user_prio = st.slider("User Perceived Priority (0-100):", 0, 100, int(t['Priority']))
 
-                if st.button("Confirm & Calibrate"):
+                if st.button("Confirm"):
                     time_delta = act_time - t["Time (Hrs)"]
                     prio_delta = user_prio - t["Priority"]
                     
