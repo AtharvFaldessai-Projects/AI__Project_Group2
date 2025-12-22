@@ -205,7 +205,7 @@ elif page == "Timetable Generator":
             
             schedule_data.append({
                 "Slot": f"{int(current_hour):02d}:00 - {int(end_hour):02d}:{(int((end_hour%1)*60)):02d}",
-                "Task Name": task["name"],
+                "Task Name": task_name,
                 "Duration": f"{duration} hrs"
             })
             current_hour = end_hour
