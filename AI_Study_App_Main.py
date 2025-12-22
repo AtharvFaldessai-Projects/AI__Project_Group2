@@ -16,7 +16,6 @@ page = st.sidebar.selectbox("Platforms:", [
     "Time Estimator", 
     "Priority Analysis Machine",
     "Centralized Task Manager",
-    "Timetable Generator",
 ])
 
 if page == "Home":
@@ -33,9 +32,6 @@ if page == "Home":
     with col3:
         st.subheader("Task Manager")
         st.write("Acts as a centralized dashboard for viewing all your tasks.")
-    with col4:
-        st.subheader("Timetable Generator")
-        st.write("Generates a dynamic schedule based on your AI-processed data.")
 
 elif page == "Time Estimator":
     st.title("AI Time Estimator")
@@ -210,21 +206,3 @@ elif page == "Centralized Task Manager":
     if st.button("Clear All Data"):
         st.session_state.task_db = []
         st.rerun()
-
-elif page == "Timetable Generator":
-    st.title("AI Timetable Generator")
-    if not st.session_state.task_db:
-        st.warning("No tasks found!")
-    else:
-        start_time = st.number_input("Start Hour (0-23):", 0, 23, 9)
-        schedule_data = []
-        curr = float(start_time)
-        for t in st.session_state.task_db:
-            end = curr + t["Time (Hrs)"]
-            schedule_data.append({
-                "Slot": f"{int(curr):02d}:00 - {int(end):02d}:{(int((end%1)*60)):02d}",
-                "Task": t["Task"],
-                "Duration": f"{t['Time (Hrs)']} hrs"
-            })
-            curr = end
-        st.table(pd.DataFrame(schedule_data))
