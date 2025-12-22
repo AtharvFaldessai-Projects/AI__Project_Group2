@@ -24,7 +24,7 @@ if page == "Home":
     st.write("Welcome to our AI Study App.")
     st.info("Please select a model from the sidebar:")
     
-    col1, col2, col3 = st.columns(3)
+    col1, col2, col3, col4 = st.columns(4)
     with col1:
         st.subheader("Time Estimator (Model 1)")
         st.write("Its role is to predict how long a task will take based on subject and difficulty.")
@@ -32,10 +32,10 @@ if page == "Home":
         st.subheader("Priority Analysis Machine (Model 2)")
         st.write("Its role is to calculate a priority score based on deadlines and mental energy.")
     with col3:
-        st.subheader("Task Manager (Model 3)")
+        st.subheader("Task Manager")
         st.write("Its role is to provide a centralised platform for task management.")
-    with col3:
-        st.subheader("Task Manager (Model 3)")
+    with col4:
+        st.subheader("Timetable Generator")
         st.write("Its role is to provide a centralised platform for task management.")
 
 elif page == "Time Estimator (Model 1)":
