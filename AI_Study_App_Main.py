@@ -22,7 +22,7 @@ if page == "Home":
     st.title("AI Study App")
     st.write("Welcome to our AI Study App. Use the sidebar to switch between segments.")
     
-    column_1, column_2, column_3, column_4 = st.columns(4)
+    column_1, column_2, column_3 = st.columns(3)
     with column_1:
         st.subheader("Time Estimator")
         st.write("Predicts the time taken to complete a task.")
@@ -73,10 +73,10 @@ elif page == "Time Estimator":
             "Status": "Pending"
         }
 
-        c1, c2, c3 = st.columns(3)
-        c1.metric("Subject", subject_completed.title())
-        c2.metric("Difficulty Level", f"{difficulty_level:.1f}/10")
-        c3.metric("Focus Level", f"{focus_level:.1f}")
+        column_7, column_8, column_9 = st.columns(3)
+        column_7.metric("Subject", subject_completed.title())
+        column_8.metric("Difficulty Level", f"{difficulty_level:.1f}/10")
+        column_9.metric("Focus Level", f"{focus_level:.1f}")
 
         st.subheader(f"Predicted Total Time: {predicted_total_time:.2f} {time_unit}")
         st.info(f"Estimated Completion Range: {estimation_range_low:.2f} to {estimation_range_high:.2f} {time_unit}")
@@ -89,7 +89,6 @@ elif page == "Time Estimator":
 elif page == "Priority Analysis Machine":
 
     st.set_page_config(page_title="AI Priority Engine", layout="centered")
-    st.title("AI Priority Analysis Machine")
     st.markdown("---")
 
     st.sidebar.header("Task Details")
@@ -99,19 +98,19 @@ elif page == "Priority Analysis Machine":
     completion = st.sidebar.slider("Current Completion %", 0, 100, 0)
 
     st.sidebar.subheader("Time Value")
-    est_val = st.sidebar.number_input("Estimated Time Value", min_value=0.1, value=1.0)
+    est_val = st.sidebar.number_input("Estimated Time Value", min_value=0.1, value=float(st.session_state['shared_time']))
     est_unit = st.sidebar.selectbox("Estimated Unit", ["Minutes", "Hours", "Days"])
 
     dead_val = st.sidebar.number_input("Deadline Time Value", min_value=0.1, value=24.0)
     dead_unit = st.sidebar.selectbox("Deadline Unit", ["Minutes", "Hours", "Days"])
 
     st.header("Human Capacity Level")
-    col1, col2 = st.columns(2)
+    column_10, column_11 = st.columns(2)
 
-    with col1:
+    with column_10:
         mood = st.slider("Mental State (1: Optimal, 10: Burnout)", 1, 10, 3)
         energy = st.slider("Energy Level (1: Low, 10: Peak)", 1, 10, 7)
-    with col2:
+    with column_11:
         motivation = st.slider("Motivation (1: Bored, 10: Dedicated)", 1, 10, 5)
         stress = st.slider("Stress Level (1: None, 10: Max)", 1, 10, 2)
 
@@ -163,9 +162,9 @@ elif page == "Priority Analysis Machine":
     if st.button("Update Priority in Manager"):
         if st.session_state.task_db:
             st.session_state.task_db[-1]["Priority"] = priority
-            st.success("Priority Integrated!")
+            st.success("Priority score saved to the Task Manager!")
         else:
-            st.error("Create a task in Model 1 first!")
+            st.error("Please un the Time Estimator and Priority Analysis Machine first")
 
     st.text("-" * 50)
 
