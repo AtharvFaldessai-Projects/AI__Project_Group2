@@ -156,3 +156,42 @@ elif page == "Timetable Generator":
             })
             current_hour = end_hour
         st.table(pd.DataFrame(schedule_data))
+
+elif page == "Data Visualization":
+    st.title("📊 Study Analytics")
+    if not st.session_state.task_db:
+        st.info("No data available to visualize.")
+    else:
+        df = pd.DataFrame(st.session_state.task_db)
+        
+        col1, col2 = st.columns(2)
+        with col1:
+            st.subheader("Time Distribution by Subject")
+            # Groups tasks by subject and sums up the AI-predicted hours
+            subject_data = df.groupby("Subject")["Time (Hrs)"].sum()
+            st.bar_chart(subject_data)
+            
+        with col2:
+            st.subheader("Priority vs. Time")
+            st.scatter_chart(df, x="Time (Hrs)", y="Priority")
+
+elif page == "Feedback Loop":
+    st.title("🔄 AI Feedback Loop")
+    if not st.session_state.task_db:
+        st.warning("Analyze a task first to provide feedback!")
+    else:
+        task_names = [t["Task"] for t in st.session_state.task_db]
+        selected_task = st.selectbox("Select Finished Task:", task_names)
+        
+        for task in st.session_state.task_db:
+            if task["Task"] == selected_task:
+                st.write(f"AI Predicted: {task['Time (Hrs)']} hours")
+                actual_time = st.number_input("How many hours did it actually take?", min_value=0.1, value=float(task['Time (Hrs)']))
+                
+                if st.button("Submit Feedback"):
+                    delta = actual_time - task["Time (Hrs)"]
+                    task["Actual Time"] = actual_time
+                    task["Status"] = "Completed"
+                    
+                    st.success(f"Feedback Received! AI Error Margin: {delta:.2f} hours.")
+                    st.info("In Demo 2, this 'Delta' will be used to auto-calibrate Model 1.")
