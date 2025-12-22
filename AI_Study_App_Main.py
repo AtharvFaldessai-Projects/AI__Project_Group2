@@ -160,11 +160,10 @@ elif page == "Priority Analysis Machine":
         st.info(f"SETTING: COMFORTABLE MODE.")
 
     if st.button("Update Priority in Manager"):
-        if st.session_state.task_db:
-            st.session_state.task_db[-1]["Priority"] = priority
-            st.success("Priority score saved to the Task Manager!")
-        else:
-            st.error("Please un the Time Estimator and Priority Analysis Machine first")
+        st.session_state.task_db[-1]["Priority"] = estimated_priority
+        st.success("Priority score saved to the Task Manager!")
+    else:
+        st.error("Please run the Time Estimator and Priority Analysis Machine first")
 
     st.text("-" * 50)
 
