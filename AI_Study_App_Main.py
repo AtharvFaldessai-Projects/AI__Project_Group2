@@ -91,8 +91,7 @@ elif page == "Time Estimator":
         st.success("Task Extracted to Manager!")
 
 elif page == "Priority Analysis Machine":
-    st.title("AI Priority Analysis Machine")
-    
+
     st.set_page_config(page_title="AI Priority Engine", layout="centered")
     st.title("AI Priority Analysis Machine")
     st.markdown("---")
