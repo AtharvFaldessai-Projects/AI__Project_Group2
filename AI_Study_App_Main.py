@@ -70,6 +70,17 @@ elif page == "Time Estimator":
             "Actual Time": 0.0,
             "Status": "Pending"
         }
+
+        c1, c2, c3 = st.columns(3)
+        c1.metric("Subject", subject_completed.title())
+        c2.metric("Difficulty Level", f"{difficulty_level:.1f}/10")
+        c3.metric("Focus Level", f"{focus_level:.1f}")
+
+        st.subheader(f"Predicted Total Time: {predicted_total_time:.2f} {time_unit}")
+        st.info(f"Estimated Completion Range: {estimation_range_low:.2f} to {estimation_range_high:.2f} {time_unit}")
+    
+        st.write(f"Working Time: {working_total_time:.2f} {time_unit}")
+        st.write(f"Break Time: {break_total_time:.2f} {time_unit}")
         st.session_state.task_db.append(new_task)
         st.success("Task Extracted to Manager!")
 
